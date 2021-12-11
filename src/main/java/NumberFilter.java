@@ -1,28 +1,33 @@
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NumberFilter {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
+
 
     public NumberFilter(List<Integer> numbers){
-        if (numbers != null && !numbers.isEmpty()){
-            this.numbers = numbers;
-            sorter();
+        if(numbers.isEmpty())
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException");
+        this.numbers = numbers;
+    }
+
+    public int getMin() {
+        int min = Integer.MAX_VALUE;
+
+        for (int number:numbers) {
+           if(min>number)
+               min = number;
         }
-        else
-            this.numbers = List.of(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return min;
     }
 
-    public int getMin(){
-        return numbers.get(0);
-    }
+    public int getMax() {
+        int max = Integer.MIN_VALUE;
 
-    public int getMax(){
-        return numbers.get(numbers.size()-1);
-    }
-
-    private void sorter(){
-        numbers = numbers.stream().sorted().collect(Collectors.toList());
+        for (int number:numbers) {
+            if(max<number)
+                max = number;
+        }
+        return max;
     }
 }

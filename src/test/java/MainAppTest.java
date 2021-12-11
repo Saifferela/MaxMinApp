@@ -3,25 +3,26 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainAppTest {
 
     List<Integer> numbers = List.of();
 
     @Test
-    void getMax_IfListIsEmptyMustReturn_IntegerMaxValues() {
-        int given = new NumberFilter(numbers).getMax();
-        int expect = 2147483647;
+    void getMin_IfListIsEmptyMustReturn_IndexOutOfBoundsException() {
 
-        assertThat(given).isEqualTo(expect);
+        IndexOutOfBoundsException exception = assertThrows(IndexOutOfBoundsException.class, () -> new NumberFilter(numbers).getMin());
+
+        assertEquals("IndexOutOfBoundsException", exception.getMessage());
     }
 
     @Test
-    void getMin_IfListIsEmptyMustReturn_IntegerMinValues() {
-        int given = new NumberFilter(numbers).getMin();
-        int expect = -2147483648;
+    void getMax_IfListIsEmptyMustReturn_IndexOutOfBoundsException() {
 
-        assertThat(given).isEqualTo(expect);
+        IndexOutOfBoundsException exception = assertThrows(IndexOutOfBoundsException.class, () -> new NumberFilter(numbers).getMax());
+
+        assertEquals("IndexOutOfBoundsException", exception.getMessage());
     }
 }

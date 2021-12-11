@@ -6,8 +6,8 @@ public class MainApp {
 
         NumberFilter numberFilter = new NumberFilter(numbers);
 
-        int max = numberFilter.getMax();
-        int min = numberFilter.getMin();
+        int max = numberFilter.getMin();
+        int min = numberFilter.getMax();
 
         System.out.println("Min value in the list: " + min);
         System.out.println("Max value in the list: " + max);
